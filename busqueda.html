@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>busqueda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #adadad;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, p {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .radio-group, .form-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 20px; 
+            width: 60%; 
+            max-width: 300px;
+        }
+
+        .form-group {
+            display: none;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 10px;
+            min-width: 70px;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            margin-right: 15px;
+            padding: 10px;
+            font-size: 18px;
+            width: 300px;
+        }
+
+        .form-group input:last-child {
+            margin-right: 0;
+        }
+
+        input[type="submit"] {
+            background-color: #160404;
+            color: #fff;
+            cursor: pointer;
+            padding: 15px 30px;
+            margin-top: 20px;
+            border: none;
+            text-align: center;
+            font-size: 20px;
+            width: 60%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Reimpresión y descarga de Facturas 📩</h1>
+    <p>Recuerda que solo tienes 30 días naturales desde que realizaste la compra para solicitarlas 😬</p>
+
+    <h2>Buscar facturas</h2>
+
+    <!-- Formulario completo -->
+    <form method="POST" action="buscarFactura.php">
+        <div class="radio-group">
+            <input type="radio" name="op1" id="rfc-option" value="RFC" checked>RFC
+            <input type="radio" name="op1" id="folio-option" value="Folio Factura">Folio Factura
+        </div>
+
+        <div class="form-group" id="rfc-group">
+            <label for="rfc">RFC:</label>
+            <input type="text" name="rfc" id="rfc" placeholder="RFC" required>
+        </div>
+
+        <div class="form-group" id="folio-group">
+     
+            <label for="folio">Folio:</label>
+            <input type="text" name="folio" id="folio" placeholder="123" required>
+        </div>
+
+        <input type="submit" value="Buscar">
+    </form>
+
+    <script>
+        // Selecciona los elementos del DOM
+        const rfcOption = document.getElementById('rfc-option');
+        const folioOption = document.getElementById('folio-option');
+        const rfcGroup = document.getElementById('rfc-group');
+        const folioGroup = document.getElementById('folio-group');
+
+        // Inicializa con RFC seleccionado
+        rfcGroup.style.display = 'flex';
+
+        // Añade event listeners a las opciones de radio
+        rfcOption.addEventListener('change', function() {
+            if (rfcOption.checked) {
+                rfcGroup.style.display = 'flex';
+                folioGroup.style.display = 'none';
+            }
+        });
+
+        folioOption.addEventListener('change', function() {
+            if (folioOption.checked) {
+                rfcGroup.style.display = 'none';
+                folioGroup.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>

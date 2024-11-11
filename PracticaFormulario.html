@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Facturación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #adadad;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #160404;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 80%;
+            margin: auto;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            margin-bottom: 15px;
+        }
+        .form-group-full {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #160404;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .section-break {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BIENVENIDO</h1>
+    <h1>FACTURACIÓN</h1>
+
+    <form method="POST" action="PP.php" enctype="multipart/form-data" id="invoiceForm">
+        <h2>1. Datos Fiscales</h2>
+        <div class="form-group">
+            <label for="RF">RFC:</label>
+            <input type="text" name="Receiver[Rfc]" placeholder="RFC" maxlength="13" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="Receiver[Email]" placeholder="Correo Electrónico" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nombre/Razón Social:</label>
+            <input type="text" name="Receiver[Name]" placeholder="Nombre/Razón Social" required>
+        </div>
+
+        <div class="form-group">
+            <label for="usoCFDI">Uso CFDI:</label>
+            <select name="Receiver[CfdiUse]" id="usoCFDI" required>
+                <option value="G01">Adquisición de mercancías</option>
+                <option value="G02">Devoluciones, descuentos o bonificaciones</option>
+                <option value="G03">Gastos en general</option>
+                <option value="P01">Por definir</option>
+                <option value="I01">Por definir</option>
+                <option value="D01">Donativos</option>
+                <option value="E01">Exportación</option>
+                <option value="N01">No aplica</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="regimenFiscal">Régimen Fiscal:</label>
+            <select name="Receiver[FiscalRegime]" id="regimenFiscal" required>
+                <option value="601">General de Ley Personas Morales</option>
+                <option value="603">Personas Morales con Fines No Lucrativos</option>
+                <option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+                <option value="606">Arrendamiento</option>
+                <option value="612">Personas Físicas con Actividades Empresariales y Profesionales</option>
+                <option value="626">Régimen Simplificado de Confianza</option>
+                <option value="629">Régimen de Incorporación Fiscal</option>
+                <option value="630">Personas Físicas con Ingresos por Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</option>
+                <option value="615">Régimen de sueldos y salarios</option>
+                <option value="617">Personas Físicas con Ingresos de Arrendamiento</option>
+                <option value="618">Personas Físicas con Actividades Profesionales</option>
+                <option value="621">Personas Físicas con Ingresos de Actividades Empresariales</option>
+                <option value="622">Personas Físicas con Ingresos por Honorarios</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="codigoPostal">Código Postal:</label>
+            <input type="text" name="Receiver[TaxZipCode]" placeholder="Código Postal" required>
+        </div>
+
+        <div class="form-group">
+            <label for="PaymentForm">Forma de Pago:</label>
+            <select name="PaymentForm" id="PaymentForm" required>
+                <option value="01">Efectivo</option>
+                <option value="02">Cheque</option>
+                <option value="03">Tarjeta de crédito</option>
+                <option value="04">Tarjeta de débito</option>
+                <option value="05">Monederos electrónicos</option>
+                <option value="06">Dinero electrónico</option>
+                <option value="08">Otros</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PaymentMethod">Método de Pago:</label>
+            <select name="PaymentMethod" id="PaymentMethod" required>
+                <option value="PUE">Pago en una sola exhibición</option>
+                <option value="PPD">Pago en parcialidades o diferido</option>
+                <option value="NA">No aplicable</option>
+            </select>
+        </div>
+
+        <div class="section-break"></div>
+
+        <h2>2. Información de Tickets</h2>
+
+        <div class="form-group">
+            <label for="folio">Folio:</label>
+            <input type="text" name="Folio" placeholder="Folio" required>
+        </div>
+
+        <div id="productList">
+            <div class="form-group-full product-item">
+                <label for="UnitPrice">Precio Unitario:</label>
+                <input type="number" name="Items[0][UnitPrice]" class="item-unitprice" placeholder="Precio Unitario" required>
+                
+                <label for="Quantity">Cantidad:</label>
+                <input type="number" name="Items[0][Quantity]" class="item-quantity" value="1" required>
+                
+                <label for="ProductCode">Código del Producto:</label>
+                <input type="text" name="Items[0][ProductCode]" class="item-productcode" value="01010101" required>
+                
+                <label for="Description">Descripción:</label>
+                <input type="text" name="Items[0][Description]" class="item-description" value="Compra en tienda" required>
+                
+                <button type="button" onclick="removeProduct(this)">Eliminar Producto</button>
+                <h3>Total Producto: <span class="item-total-display">0.00</span></h3>
+            </div>
+        </div>
+
+        <button type="button" onclick="addProduct()">Agregar Producto</button>
+
+        <h2>Total General: <span id="total">0.00</span></h2>
+        <h2>IVA (16%): <span id="iva">0.00</span></h2>
+        <h2>Total con IVA: <span id="totalWithIVA">0.00</span></h2>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        const ivaRate = 0.16; // Tasa de IVA del 16%
+
+        function addProduct() {
+            const productList = document.getElementById('productList');
+            const productCount = productList.getElementsByClassName('product-item').length;
+            const newProduct = document.createElement('div');
+            newProduct.className = 'form-group-full product-item';
+            newProduct.innerHTML = `
+                <label for="UnitPrice">Precio Unitario:</label>
+                <input type="number" name="Items[${productCount}][UnitPrice]" class="item-unitprice" placeholder="Precio Unitario" required>
+                
+                <label for="Quantity">Cantidad:</label>
+                <input type="number" name="Items[${productCount}][Quantity]" class="item-quantity" value="1" required>
+                
+                <label for="ProductCode">Código del Producto:</label>
+                <input type="text" name="Items[${productCount}][ProductCode]" class="item-productcode" value="01010101" required>
+                
+                <label for="Description">Descripción:</label>
+                <input type="text" name="Items[${productCount}][Description]" class="item-description" value="Compra en tienda" required>
+                
+                <button type="button" onclick="removeProduct(this)">Eliminar Producto</button>
+                <h3>Total Producto: <span class="item-total-display">0.00</span></h3>
+            `;
+            productList.appendChild(newProduct);
+            calculateTotal();
+        }
+
+        function removeProduct(button) {
+            button.parentElement.remove();
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const productItems = document.querySelectorAll('.product-item');
+            let total = 0;
+
+            productItems.forEach(item => {
+                const unitPrice = parseFloat(item.querySelector('.item-unitprice').value) || 0;
+                const quantity = parseFloat(item.querySelector('.item-quantity').value) || 0;
+                const itemTotal = unitPrice * quantity;
+
+                item.querySelector('.item-total-display').innerText = itemTotal.toFixed(2);
+                total += itemTotal;
+            });
+
+            document.getElementById('total').innerText = total.toFixed(2);
+            const iva = total * ivaRate;
+            document.getElementById('iva').innerText = iva.toFixed(2);
+            document.getElementById('totalWithIVA').innerText = (total + iva).toFixed(2);
+        }
+
+        document.addEventListener('input', calculateTotal);
+    </script>
+</body>
+</html>

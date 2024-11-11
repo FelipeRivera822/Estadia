@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #adadad;
+            margin: 0;
+            padding: 0;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            width: 80%;
+            background-color: #fff;
+        }
+
+        .faq-question {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 10px;
+            border: none;
+            width: 80%;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ccc;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Preguntas Frecuentes 🧐​</h1></center>
+    <center><p>Mira las preguntas que nos han hecho con anterioridad,</p></center>
+     <center><p>quizá ya tenemos una respuesta para ti 🙌</p></center>
+    <br>
+    <br>
+    <center><div class="faq-item">
+        <button class="faq-question">¿Cuánto tiempo tengo para facturar?</button>
+        <div class="faq-answer">
+            <p>Cuentas con 30 días naturales desde el momento de su compra para poder facturar su ticket.</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">¿Puedo facturar sin Ticket?</button>
+        <div class="faq-answer">
+            <p>Para poder identificar la compra necesitamos algunos datos que contiene el ticket, lo que hace imposible poder facturar si no contamos con esa información</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">¿Qué necesito para visualizar mi factura en PDF?</button>
+        <div class="faq-answer">
+            <p>Necesita tener instalado en su equipo (PC o Móvil) Acrobat Reader para poder visualizar el formato PDF de su factura</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">La factura no llega a mi correo electronico</button>
+        <div class="faq-answer">
+            <p>En el caso de no recibir su factura en su correo electrónico, puede intentar reenviar su factura en el apartado de reenvío o enviar un correo electrónico a la cuenta cobranza@ceoworks.com.mx, indicando las siguiente información: # Ticket, Fecha de Compra, # Tienda, # Caja, Importe de Compra y Datos fiscales.</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">¿Como puedo reenviar o reimprimir mi factura?</button>
+        <div class="faq-answer">
+            <p>Desde la pantalla de "Inicio", pulsando la opción "Reimprimir Factura". Existen 2 opciones de búsqueda de facturas, por RFC o folio de factura</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">El sistema no me permite realizar mi facturacion</button>
+        <div class="faq-answer">
+            <p>En el caso de recibir algun mensaje de error por parte del sistema que no sea claro o simplemente no puede realizar su facturación, se puede poner en contacto con con nosotros al correo: cobranza@ceoworks.com.mx</p>
+        </div>
+    </div></center>
+    <center><div class="faq-item">
+        <button class="faq-question">¿Qué debo usar en la opcion USO de CFDI?</button>
+        <div class="faq-answer">
+            <p>Esta opción es para que el contribuyente defina el uso de esta factura o bajo que concepto va a comprobar el egreso</p>
+        </div>
+    </div></center>
+
+    <script>
+        // Selecciona todos los elementos con la clase 'faq-item'
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            // Agrega un event listener al hacer clic en la pregunta
+            question.addEventListener('click', () => {
+                // Alterna la clase 'active' en el elemento .faq-item al hacer clic
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

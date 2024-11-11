@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Facturación</title>
+    <style>
+         body {
+            margin: 0;
+    padding: 0;
+    background: url(Fondo2.jpeg);   
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+        }
+        
+        h1, h2 {
+            color: #ffffff;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 80%;
+            margin: auto;
+        }
+        p{
+            color: #ffffff;
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            margin-bottom: 15px;
+        }
+        .form-group-full {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #160404;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .section-break {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px; /* Espacio entre botones */
+        }
+        .button-container button {
+            padding: 15px 30px; /* Aumenta el tamaño del botón */
+            font-size: 18px; /* Aumenta el tamaño de la fuente */
+            background-color: #160404;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 300px; /* Ancho fijo para botones más grandes */
+        }
+        .icon-container {
+            position: relative;
+            display: inline-block;
+        }
+        .icon-container img {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .popup {
+            display: none; /* Oculta la ventana emergente por defecto */
+            position: absolute;
+            top: 270px; /* Ajusta la posición de la ventana emergente */
+            left: 80%;
+            transform: translateX(-50%);
+            width: 500px;
+            border: 1px solid #160404;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .popup img {
+            width: 100%;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .form-group {
+                width: 100%;
+            }
+            .button-container {
+                flex-direction: column; /* Coloca botones en columna en pantallas pequeñas */
+            }
+            .button-container button {
+                width: 100%; /* Ancho completo en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <center><p><img src="imagenes/Logo1.png" alt="pok5" class="pok5" width="200" height="200"></p></center>
+    <h1>FACTURACIÓN EN LINEA</h1>
+    <CENter><p>¡Hola! ¿necesitas una factura?</p></CENter>
+<center><p>Recuerda que podrá ser generada después de 24 hrs de haber realizado tu compra 🙌​​</p></center>
+<center><p>¿Qué datos necesito de mi ticket? Encuéntralos acá 👉<img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="Info Icon" onmouseover="showPopup()" onmouseout="hidePopup()"></p></center>
+
+    <!-- Ventana Emergente -->
+    <div class="popup" id="popup">
+        <img src="imagenes/Imagen1.jpg" alt="Imagen Ejemplo"class="Imagen Ejemplo" width="406" height="312">
+</div>
+
+<script>
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    function hidePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
+<br>
+    <!-- Botones centrados -->
+    <div class="button-container">
+        <button onclick="window.location.href='PracticaFormulario.html'">Solicitar Factura</button>
+    </div>
+    <div class="button-container">
+        <button onclick="window.location.href='busqueda.html'">Reimprimir Factura</button>
+    </div>
+    <div class="button-container">
+        <button onclick="window.location.href='preguntas.html'">Pregunas Frecuentes</button>
+    </div>
+    <br>
+    <center><p>Si tuviste algún problema en el proceso de facturación</p></center>
+    <center><p>comunícate con nosotros al correo electrónico: cobranza@ceoworks.com.mx</p></center>
+    
+</body>
+</html>
